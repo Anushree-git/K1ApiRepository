@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>K1Api_ServiceArea</title>
+    <style>
+        button.orange {
+            color: white;
+            border: 1px solid #FB8F3D;
+            background: -webkit-linear-gradient(top, #FDA251, #FB8F3D);
+            background: -moz-linear-gradient(top, #FDA251, #FB8F3D);
+            background: -ms-linear-gradient(top, #FDA251, #FB8F3D);
+            padding: 16px 25px;
+            margin: 15px auto;
+            width: 30%;
+            border-radius: 8px;
+            display: block;
+        }
+
+            button.orange:hover {
+                border: 1px solid #EB5200;
+                background: -webkit-linear-gradient(top, #FD924C, #F9760B);
+                background: -moz-linear-gradient(top, #FD924C, #F9760B);
+                background: -ms-linear-gradient(top, #FD924C, #F9760B);
+                box-shadow: 0 1px #EFEFEF;
+            }
+
+            button.orange:active {
+                box-shadow: inset 0 1px 1px rgba(0,0,0,0.3);
+            }
+    </style>
+    <script src="Scripts/jquery-1.10.2.js"></script>
+    <script type="text/javascript">
+
+        function GetServiceAreaList() {
+
+            $.ajax({
+                type: 'POST',
+                url: 'api/ServiceArea/List',
+                data: null,
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                success: function (data, textStatus, XMLHttpRequest) {
+                    console.log(data);
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    console.log('Error in Operation');
+                }
+            });
+        }
+
+
+        var serviceArea = 
+           {"Id":6,"AreaName":"greenyard" }
+       
+        function Insert() {
+            $.ajax({
+                type: 'POST',
+                url: 'api/ServiceArea/Insert',
+                data: JSON.stringify(serviceArea),
+                datatype: 'JSON',
+                contentType: 'application/json;charset=utf=8',
+                success: function (data, textStatus, XMLHttpRequest) {
+                    console.log(data);
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    console.log('Error in Operation');
+                }
+            });
+        }
+
+        function Delete() {
+            $.ajax({
+                type: 'POST',
+                url: 'api/ServiceArea/Delete',
+                data: JSON.stringify(5),
+                datatype: 'JSON',
+                contentType: 'application/json;charset=utf=8',
+                success: function (data, textStatus, XMLHttpRequest) {
+                    console.log(data);
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    console.log('Error in Operation');
+                }
+            });
+        }
+
+
+        $(document).ready(function () {
+            $('#GetServiceAreaList').on("click", GetServiceAreaList);
+            $('#Insert').on("click", Insert);
+            $('#Delete').on("click", Delete);
+
+        });
+
+    </script>
+
+</head>
+<body>
+    <button class="orange" id="GetServiceAreaList">GetServiceAreaList</button><br /><br />
+    <button class="orange" id="Insert">Insert</button><br /><br />
+    <button class="orange" id="Delete">Delete</button><br /><br />
+
+
+</body>
+</html>
